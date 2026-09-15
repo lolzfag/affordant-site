@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Affordant — Evaluating datasets and data-generation partners</title>
+<meta name="description" content="A group of researchers from Oxford, Cambridge and Tsinghua evaluating external datasets and data-generation partners for multimodal models, agent training and robotics.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Affordant">
+<meta property="og:title" content="Affordant — Evaluating datasets and data-generation partners">
+<meta property="og:description" content="We're particularly interested in proprietary datasets, expert-generated data, teleoperation trajectories, video/action data, and custom collection.">
+<meta name="theme-color" content="#f4f2ec">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='22' height='22' rx='6' fill='%231a1a1a'/%3E%3Crect x='6' y='5.5' width='2.6' height='10' rx='1.3' fill='%23f4f2ec'/%3E%3Crect x='15.4' y='5.5' width='2.6' height='10' rx='1.3' fill='%23f4f2ec'/%3E%3Ccircle cx='12' cy='15.2' r='2.7' fill='%23d6f24a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/*
+  EDIT ME — the only things you need to change:
+    1. The contact address: search for  hello@affordant.io  (appears twice).
+    2. The booking link: find  id="book"  below, set its href to your Cal.com /
+       Google Calendar booking URL and delete the `hidden` attribute.
+*/
+:root {
+  --bg: #f4f2ec;
+  --ink: #1a1a1a;
+  --ink-2: #57544e;
+  --ink-3: #8c877e;
+  --line: rgba(26, 26, 26, 0.14);
+  --accent: #d6f24a;
+  --serif: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--bg);
+  background-image:
+    radial-gradient(120% 80% at 100% 0%, rgba(214, 242, 74, 0.16), transparent 60%),
+    radial-gradient(90% 60% at 0% 100%, rgba(255, 255, 255, 0.7), transparent 60%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: var(--ink); }
+
+.mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
+
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 40px) 64px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+/* top bar */
+.top {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-bottom: 20px; border-bottom: 1px solid var(--line);
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand svg { width: 22px; height: 22px; }
+.brand span { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; color: var(--ink); }
+.top .mono { text-align: right; }
+
+/* hero */
+.hero { padding: clamp(56px, 10vw, 120px) 0 clamp(40px, 6vw, 72px); }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(214, 242, 74, 0.35); }
+h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(38px, 6.6vw, 74px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  max-width: 21ch;
+}
+h1 em { font-style: italic; color: var(--ink); }
+h1 em::after { content: ""; display: block; height: 0; }
+.lede {
+  margin: 32px 0 0;
+  max-width: 58ch;
+  font-size: clamp(18px, 2.1vw, 21px);
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.lede strong { color: var(--ink); font-weight: 500; }
+
+/* list */
+.wants { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.wants li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 8px 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.wants .n { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); letter-spacing: 0.04em; padding-top: 4px; }
+.wants .t { font-family: var(--serif); font-size: clamp(24px, 3vw, 30px); line-height: 1.1; letter-spacing: -0.01em; }
+.wants .d { grid-column: 2; margin: 0; color: var(--ink-2); font-size: 16px; max-width: 60ch; }
+@media (min-width: 720px) {
+  .wants li { grid-template-columns: 48px minmax(0, 300px) 1fr; }
+  .wants .d { grid-column: 3; }
+}
+
+/* who / contact */
+.grid {
+  display: grid; gap: 40px;
+  padding: clamp(48px, 7vw, 88px) 0 0;
+}
+@media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; gap: 56px; } }
+.grid h2 { margin: 0 0 14px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.grid p { margin: 0; color: var(--ink-2); font-size: 16.5px; }
+.grid p + p { margin-top: 12px; }
+.grid .pl { font-family: var(--serif); font-size: 22px; line-height: 1.3; color: var(--ink); }
+
+.contact a.mail {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.4vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--ink);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+  word-break: break-all;
+}
+.contact a.mail:hover { border-color: var(--accent); }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 22px; padding: 12px 18px;
+  border-radius: 999px; border: 1px solid var(--ink);
+  font-size: 15px; font-weight: 500;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.btn:hover { background: var(--accent); transform: translateY(-1px); }
+.btn svg { width: 14px; height: 14px; }
+.contact .hint { margin-top: 20px; font-size: 15px; color: var(--ink-3); }
+
+/* footer */
+.foot {
+  margin-top: auto;
+  padding-top: clamp(56px, 8vw, 96px);
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+
+/* reveal */
+@media (prefers-reduced-motion: no-preference) {
+  .r { opacity: 0; transform: translateY(14px); animation: up 0.9s var(--ease) forwards; }
+  .r:nth-child(1) { animation-delay: 0.05s; }
+  .hero .r:nth-child(1) { animation-delay: 0.12s; }
+  .hero .r:nth-child(2) { animation-delay: 0.22s; }
+  .hero .r:nth-child(3) { animation-delay: 0.34s; }
+  .wants { opacity: 0; animation: up 0.9s var(--ease) 0.48s forwards; }
+  .grid { opacity: 0; animation: up 0.9s var(--ease) 0.62s forwards; }
+  .foot { opacity: 0; animation: up 0.9s var(--ease) 0.74s forwards; }
+  @keyframes up { to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="top r">
+    <a class="brand" href="/" aria-label="Affordant">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#1a1a1a"/><rect x="6" y="5.5" width="2.6" height="10" rx="1.3" fill="#f4f2ec"/><rect x="15.4" y="5.5" width="2.6" height="10" rx="1.3" fill="#f4f2ec"/><circle cx="12" cy="15.2" r="2.7" fill="#d6f24a"/></svg>
+      <span>AFFORDANT</span>
+    </a>
+    <p class="mono">Oxford &middot; Cambridge &middot; Tsinghua</p>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow mono r">Open call for data partners</p>
+    <h1 class="r">We&rsquo;re evaluating <em>external datasets</em> and <em>data-generation partners</em> for multimodal models, agent training, and robotics.</h1>
+    <p class="lede r">We&rsquo;re particularly interested in <strong>proprietary datasets</strong>, <strong>expert-generated data</strong>, <strong>teleoperation trajectories</strong>, <strong>video/action data</strong>, and <strong>custom collection</strong>.</p>
+  </section>
+
+  <ol class="wants" aria-label="What we are looking for">
+    <li><span class="n">01</span><span class="t">Proprietary datasets</span><p class="d">Existing corpora that aren&rsquo;t available on the open web, with clear provenance and licensing.</p></li>
+    <li><span class="n">02</span><span class="t">Expert-generated data</span><p class="d">Annotations, demonstrations and rationales produced by domain specialists rather than crowd workers.</p></li>
+    <li><span class="n">03</span><span class="t">Teleoperation trajectories</span><p class="d">Human-operated robot episodes with synchronised observations, actions and task outcomes.</p></li>
+    <li><span class="n">04</span><span class="t">Video / action data</span><p class="d">Egocentric or third-person video paired with action labels, for manipulation and agent pretraining.</p></li>
+    <li><span class="n">05</span><span class="t">Custom collection</span><p class="d">Partners who can run bespoke collection to a spec: hardware, operators, environments and QA.</p></li>
+  </ol>
+
+  <section class="grid">
+    <div>
+      <h2>Who we are</h2>
+      <p class="pl">A small group of researchers from the University of Oxford, the University of Cambridge and Tsinghua University, working on multimodal models, agents and robot learning.</p>
+      <p>We move quickly on evaluations: a short sample, a data card and a licensing conversation are usually enough to know whether to go further.</p>
+    </div>
+    <div class="contact">
+      <h2>Get in touch</h2>
+      <a class="mail" href="mailto:hello@affordant.io?subject=Data%20partnership">hello@affordant.io</a>
+      <div>
+        <a class="btn" id="book" href="#" hidden>Book a 20-minute call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+      <p class="hint">If you have data or a collection capability that fits, send a short note: what it is, roughly how much, and how it was collected.</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p class="mono">&copy; 2026 Affordant</p>
+    <p class="mono"><a href="mailto:hello@affordant.io">hello@affordant.io</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
